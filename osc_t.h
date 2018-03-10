@@ -48,4 +48,9 @@ typedef union {
     char b[8];
 } osc64_t;
 
+typedef struct {
+    uint32_t size;
+    char* data;
+} osc_blob;
+
 #endif

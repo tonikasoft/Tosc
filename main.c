@@ -1,15 +1,16 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include "osct_encoder.h"
 
 int main() {
-    /* int val = -112110; */
+    /* int64_t val = -11211343434340; */
+    char o[20];
     const char* s = "hello world";
 
-    /* const char* out = encode_value_for_typetag(&val, OSC_INT32); */
-    const char* out = encode_value_for_typetag((void *)s, OSC_STRING);
+    encode_value_for_typetag((void*)s, 's', o);
 
-    printf("%s\n", out);
-    printf("%lu\n", strlen(out));
+    printf("%s\n", o);
+    printf("%lu\n", strlen(o));
 
     return 0;
 }

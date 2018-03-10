@@ -1,56 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "osct_encoder.h"
 
-const char* encode_value_for_typetag(void* value, osc_typetag typetag) {
+void encode_value_for_typetag(void* value, osc_typetag typetag, char* output) {
     switch(typetag) {
         case OSC_INT32:
         case OSC_RGBA:
         case OSC_MIDI:
-            return encode_int32(*((int32_t*)value));
+            encode_int32(*((int32_t*)value), output);
+            break;
         case OSC_FLOAT32:
-            return encode_float32(*((float*)value));
+            encode_float32(*((float*)value), output);
+            break;
         case OSC_TIMETAG:
         case OSC_INT64:
-            return encode_int64(*((int64_t*)value));
+            encode_int64(*((int64_t*)value), output);
+            break;
         case OSC_DOUBLE:
-            return encode_double(*((double*)value));
-        case OSC_CHAR:
+            encode_double(*((double*)value), output);
+            break;
         case OSC_STRING:
-            return (char*)value;
+            encode_osc_string((char*)value, output);
+            break;
         case OSC_TRUE:
         case OSC_FALSE:
         case OSC_NIL:
         case OSC_INFINITUM:
         case OSC_UNSUPPORTED:
         default:
-            return "";
+            break;
     }
 }
 
-const char* encode_int32(int32_t value) {
-    static osc32_t converter;
+void encode_int32(int32_t value, char* buf) {
+    osc32_t converter;
     converter.i = value;
     converter.u = htonl(converter.u);
-    return converter.b;
+    memcpy(buf, converter.b, 4);
 }
 
-const char* encode_float32(float value) {
-    static osc32_t converter;
+void encode_float32(float value, char* buf) {
+    osc32_t converter;
     converter.f = value;
     converter.u = htonl(converter.u);
-    return converter.b;
+    memcpy(buf, converter.b, 4);
 }
 
-const char* encode_int64(int64_t value) {
-    static osc64_t converter;
+void encode_int64(int64_t value, char* buf) {
+    osc64_t converter;
     converter.i = value;
     converter.u = htonll(converter.u);
-    return converter.b;
+    memcpy(buf, converter.b, 8);
 }
 
-const char* encode_double(double value) {
-    static osc64_t converter;
+void encode_double(double value, char* buf) {
+    osc64_t converter;
     converter.f = value;
     converter.u = htonll(converter.u);
-    return converter.b;
+    memcpy(buf, converter.b, 8);
+}
+
+void encode_osc_string(char* value, char* buf) {
+    /* size_t s = strlen(value); */
+    /* size_t output_s = s + (4-s%4); */
+    memcpy((void*)buf, (void*)value, strlen(value));
 }
