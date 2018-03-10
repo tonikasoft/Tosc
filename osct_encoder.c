@@ -71,8 +71,6 @@ void encode_osc_string(char* value, char* buf) {
 }
 
 void encode_osc_blob(osc_blob* blob, char* buf) {
-    char blob_size[4];
-    encode_int32((int32_t)blob->size, blob_size);
-    strncat(buf, blob_size, 4);
-    strcat(buf, blob->data);
+    encode_int32((int32_t)blob->size, buf);
+    memcpy(buf+4, blob->data, blob->size);
 }
