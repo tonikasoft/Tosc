@@ -23,7 +23,7 @@ typedef enum {
     OSC_INT64     = 'h',
     OSC_TIMETAG   = 't',
     OSC_DOUBLE    = 'd',
-    OSC_CHAR32    = 'c',
+    OSC_CHAR      = 'c',
     OSC_RGBA      = 'r',
     OSC_MIDI      = 'm',
     OSC_TRUE      = 'T',

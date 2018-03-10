@@ -14,6 +14,7 @@ const char* encode_value_for_typetag(void* value, osc_typetag typetag) {
             return encode_int64(*((int64_t*)value));
         case OSC_DOUBLE:
             return encode_double(*((double*)value));
+        case OSC_CHAR:
         case OSC_STRING:
             return (char*)value;
         case OSC_TRUE:
