@@ -9,6 +9,6 @@ void encode_float32(float value, char* buf);
 void encode_int64(int64_t value, char* buf);
 void encode_double(double value, char* buf);
 void encode_osc_string(char* value, char* buf);
-// const char* encode_blob(char* value);
+void encode_osc_blob(osc_blob* blob, char* buf);
 
 #endif

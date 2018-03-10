@@ -23,6 +23,9 @@ void encode_value_for_typetag(void* value, osc_typetag typetag, char* output) {
         case OSC_STRING:
             encode_osc_string((char*)value, output);
             break;
+        case OSC_BLOB:
+            encode_osc_blob((osc_blob*)value, output);
+            break;
         case OSC_TRUE:
         case OSC_FALSE:
         case OSC_NIL:
@@ -65,4 +68,11 @@ void encode_osc_string(char* value, char* buf) {
     /* size_t s = strlen(value); */
     /* size_t output_s = s + (4-s%4); */
     memcpy((void*)buf, (void*)value, strlen(value));
+}
+
+void encode_osc_blob(osc_blob* blob, char* buf) {
+    char blob_size[4];
+    encode_int32((int32_t)blob->size, blob_size);
+    strncat(buf, blob_size, 4);
+    strcat(buf, blob->data);
 }
