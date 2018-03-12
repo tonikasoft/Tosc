@@ -49,7 +49,7 @@ typedef union {
 
 typedef struct {
     uint32_t size;
-    const char* data;
+    char* data;
 } osc_blob;
 
 #endif

@@ -67,7 +67,7 @@ void encode_double(double value, char* buf) {
 void encode_osc_string(char* value, char* buf) {
     /* size_t s = strlen(value); */
     /* size_t output_s = s + (4-s%4); */
-    memcpy((void*)buf, (void*)value, strlen(value));
+    memcpy(buf, value, strlen(value));
 }
 
 void encode_osc_blob(osc_blob* blob, char* buf) {
