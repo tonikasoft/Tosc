@@ -1,13 +1,13 @@
 CC = gcc
 CFLAGS = -I.. -Wall -Wextra -pedantic
 
-all: tag_decoder_encoder
+all: main
 
-tag_decoder_encoder: *.o
+main: *.o
 	$(CC) $^ $(CFLAGS) -o $@
 
 %.o: ../%.c %.c
 	$(CC) -c $^ $(CFLAGS)
 
 clean:
-	rm *.o tag_decoder_encoder
+	rm *.o main

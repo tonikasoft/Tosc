@@ -1,9 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include "osct_encoder.h"
-#include "osct_decoder.h"
-#include "greatest/greatest.h"
-
 TEST decode_encode_int32() {
     char o[20];
     int32_t in = 123456789;
@@ -90,14 +84,4 @@ SUITE(decode_encode) {
     RUN_TEST(decode_encode_double);
     RUN_TEST(decode_encode_string);
     RUN_TEST(decode_encode_blob);
-}
-
-GREATEST_MAIN_DEFS();
-
-int main(int argc, char **argv) {
-    GREATEST_MAIN_BEGIN();
-
-    RUN_SUITE(decode_encode);
-
-    GREATEST_MAIN_END();
 }
