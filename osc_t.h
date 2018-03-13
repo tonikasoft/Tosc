@@ -1,5 +1,6 @@
 #ifndef OSC_T
 #define OSC_T 1
+
 #include <string.h>
 #include <stdint.h>
 #if _WIN32
@@ -31,7 +32,7 @@ typedef enum {
     OSC_NIL       = 'N',
     OSC_INFINITUM = 'I',
     OSC_UNSUPPORTED
-} osc_typetag;
+} osc_type;
 
 typedef union {
     int32_t i;
@@ -51,5 +52,10 @@ typedef struct {
     uint32_t size;
     char* data;
 } osc_blob;
+
+typedef struct {
+    size_t size;
+    char* content;
+} osc_packet;
 
 #endif

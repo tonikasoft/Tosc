@@ -2,7 +2,7 @@
 #define OSCT_DECODER 1
 #include "osc_t.h"
 
-void decode_value_for_typetag(char* value, osc_typetag typetag, void* output);
+void decode_value_for_typetag(char* value, osc_type type, void* output);
 
 void decode_int32(char* value, int32_t* output);
 void decode_float32(char* value, float* output);

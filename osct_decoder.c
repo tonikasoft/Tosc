@@ -3,8 +3,8 @@
 #include <string.h>
 #include "osct_decoder.h"
 
-void decode_value_for_typetag(char* value, osc_typetag typetag, void* output) {
-    switch(typetag) {
+void decode_value_for_typetag(char* value, osc_type type, void* output) {
+    switch(type) {
         case OSC_INT32:
         case OSC_RGBA:
         case OSC_MIDI:
